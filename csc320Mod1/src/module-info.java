@@ -4,5 +4,5 @@
 /**
  * 
  */
-module csc320Mod1 {
+module CSC320 {
 }
