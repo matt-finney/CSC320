@@ -24,6 +24,7 @@ public class Module3 {
 		if (income < 0) 
 		{
 			System.out.println("Error: Income cannot be negative.");
+			scnr.close();
 			return;
 		}
 		
