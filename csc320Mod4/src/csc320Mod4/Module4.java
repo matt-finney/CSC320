@@ -1,4 +1,4 @@
-package src.csc320Mod4;
+package csc320Mod4;
 
 import java.util.Scanner;
 
@@ -80,7 +80,7 @@ public class Module4
 			System.out.printf("Average = %.2f\n",  average);
 			System.out.printf("Min = %.2f\n", min);
 			System.out.printf("Max = %.2f\n", max);
-			System.out.printf("Total interest at 20% = %.2f\n", total_interest);
+			System.out.printf("Total interest at 20%% = %.2f\n", total_interest);
 		}	
 		else
 		{
