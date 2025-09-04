@@ -1,2 +1,21 @@
-/.metadata/
+# Build output
+bin/
+out/
+target/
+build/
+*.class
+
+# VS Code
+.vscode/**/*
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+
+# Eclipse (now that you’ve moved off it)
+.project
+.classpath
+.settings/
+
+# OS noise
 .DS_Store
+Thumbs.db
