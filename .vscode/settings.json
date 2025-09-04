@@ -1,9 +1,4 @@
 {
-  "java.project.sourcePaths": [
-    "csc320Mod1/src",
-    "csc320Mod3/src",
-    "csc320Mod4/src",
-    "csc320Mod5/src"
-  ],
+  "java.project.sourcePaths": ["src"],
   "java.project.outputPath": "bin"
 }

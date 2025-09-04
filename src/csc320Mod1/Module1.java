@@ -1,5 +1,4 @@
 package csc320Mod1;
-
 // Matthew Finney
 // Simple application to print information for a fictional person.
 public class Module1 
