@@ -11,7 +11,7 @@ build/
 !.vscode/settings.json
 !.vscode/tasks.json
 
-# Eclipse (now that you’ve moved off it)
+# Eclipse
 .project
 .classpath
 .settings/
