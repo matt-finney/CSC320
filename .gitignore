@@ -11,11 +11,6 @@ build/
 !.vscode/settings.json
 !.vscode/tasks.json
 
-# Eclipse
-.project
-.classpath
-.settings/
-
 # OS noise
 .DS_Store
 Thumbs.db
