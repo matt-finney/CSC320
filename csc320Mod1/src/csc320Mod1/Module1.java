@@ -2,10 +2,8 @@ package csc320Mod1;
 
 // Matthew Finney
 // Simple application to print information for a fictional person.
-
 public class Module1 
 {
-
 	public static void main(String[] args) 
 	{
 		System.out.println("First Name: Robert");
