@@ -1,4 +1,4 @@
-package csc320Mod4;
+package src.csc320Mod4;
 
 import java.util.Scanner;
 
