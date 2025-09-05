@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Module1",
+            "request": "launch",
+            "mainClass": "csc320Mod1.Module1",
+            "projectName": "CSC320_c7facf14"
+        },
+        {
+            "type": "java",
+            "name": "Module3",
+            "request": "launch",
+            "mainClass": "csc320Mod3.Module3",
+            "projectName": "CSC320_c7facf14"
+        },
+        {
+            "type": "java",
+            "name": "Module4",
+            "request": "launch",
+            "mainClass": "csc320Mod4.Module4",
+            "projectName": "CSC320_c7facf14"
+        },
+        {
+            "type": "java",
+            "name": "Module5",
+            "request": "launch",
+            "mainClass": "csc320Mod5.Module5",
+            "projectName": "CSC320_c7facf14"
+        }
+    ]
+}
