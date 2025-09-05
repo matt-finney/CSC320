@@ -17,75 +17,131 @@ public class Module4
 {
 	public static void main(String[] args) 
 	{
-		// declare and init variables
-		double total = 0;
-		double max = Double.NEGATIVE_INFINITY;
-		double min = Double.POSITIVE_INFINITY;
-		double average, total_interest;
-		
-		// read input, filter input to ignore commas and white spaces
+		final int NUM_VALUES = 5;
+		final double INTEREST_RATE = 0.20;
 		Scanner input = new Scanner(System.in);
 		input.useDelimiter("[,\\s]+");
-		System.out.print("Enter a set of 5 floating point values (e.g: 2.4, 1.1, 3.0...): ");
 		
-		// create count variables
-		int count = 0;
-		int error_count = 0;
+		// store user input in an array
+		double[] values = getUserValues(NUM_VALUES, input);
+
+		// perform calculations
+		double total = calculateTotal(values);
+		double average = calculateAverage(values);
+		double max = getMax(values);
+		double min = getMin(values);
+		double interest = calculateInterest(total, INTEREST_RATE);
 		
-		// loop as long as the count is less than 5 and there is still input to read
-		// exit loop if the user enters 3 invalid inputs
-		while (count < 5 && input.hasNext())
-		{
-			if (error_count < 3)
-			{
-				if (input.hasNextDouble())
-				{
-					// create a new value with the user's number
-					// compare and store the min and max number against the user's number
-					double value = input.nextDouble();
-					if (count == 0 || value < min)
-					{
-						min = value;
-					}
-					if (count == 0 || value > max)
-					{
-						max = value;
-					}
-					// add to total and count after iteration
-					total += value;
-					count++;
-				}
-				else
-				{
-					System.out.print("Invalid input. Please enter floating point numbers: ");
-					error_count++;
-					input.next();
-				}
-			}
-			else
-			{
-				break;
-			}
-		}
+		printResults(total, average, max, min, interest);
 		
-		// only display output if the user entered 5 numbers
-		// loop will break at 3 errors and output exit message
-		if (count == 5)
-		{
-			average = total / 5;
-			total_interest = total * 0.2;
-			
-			System.out.println();
-			System.out.printf("Total = %.2f\n", total);
-			System.out.printf("Average = %.2f\n",  average);
-			System.out.printf("Min = %.2f\n", min);
-			System.out.printf("Max = %.2f\n", max);
-			System.out.printf("Total interest at 20%% = %.2f\n", total_interest);
-		}	
-		else
-		{
-			System.out.println("Too many invalid inputs. Exiting program.");
-		}
 		input.close();
+	}
+
+	// gets user input and stores it in an array
+	public static double[] getUserValues(int num_values, Scanner input)
+	{
+		// array to hold user input
+		double[] values = new double[num_values];
+		int count = 0;
+		Scanner line_scanner;
+
+		// continue prompting until there are enough values
+		while (count < num_values) 
+		{
+			System.out.printf("Enter %d value(s): ", num_values - count);
+			String line = input.nextLine();
+			
+			// skip empty lines
+			if (line.trim().isEmpty())
+			{ 
+				continue;
+			}
+
+			// parse the line for numbers
+			line_scanner = new Scanner(line);
+			line_scanner.useDelimiter("[,\\s]+");
+
+			// read numbers from the line
+			while (line_scanner.hasNext() && count < num_values) 
+			{
+				// check if the next token is a valid double
+				// if not skip it and print a message
+				if (line_scanner.hasNextDouble()) 
+				{
+					values[count] = line_scanner.nextDouble();
+					count++;
+				} 
+				else 
+				{
+					System.out.println("Invalid input");
+					line_scanner.next();
+				}
+			}
+			line_scanner.close();
+		}
+		return values;
+	}
+
+	// iterates through the array to calculate the total
+	public static double calculateTotal(double[] values)
+	{
+		double total = 0;
+		for (int i = 0; i < values.length; i++)
+		{
+			total += values[i];
+		}
+		return total;
+	}
+
+	// calculates the average using the total divided by the number of values
+	public static double calculateAverage(double[] values)
+	{
+		double total = calculateTotal(values);
+		return total / values.length;
+	}
+
+	// iterates through the array to find the maximum value
+	public static double getMax(double[] values)
+	{
+		double max = Double.NEGATIVE_INFINITY;
+		for (int i = 0; i < values.length; i++)
+		{
+			if (values[i] > max)
+			{
+				max = values[i];
+			}
+		}
+		return max;
+	}
+
+	// iterates through the array to find the minimum value
+	public static double getMin(double[] values)
+	{
+		double min = Double.POSITIVE_INFINITY;
+		for (int i = 0; i < values.length; i++)
+		{
+			if (values[i] < min)
+			{
+				min = values[i];
+			}
+		}
+		return min;
+	}
+
+	// calculates interest
+	public static double calculateInterest(double total, double rate)
+	{
+		return total * rate;
+	}
+
+	// prints the results in two decimal places
+	public static void printResults(double total, double average, double max, double min, double interest)
+	{
+		System.out.println();
+		System.out.printf("Total = %.2f\n", total);
+		System.out.printf("Average = %.2f\n",  average);
+		System.out.printf("Min = %.2f\n", min);
+		System.out.printf("Max = %.2f\n", max);
+		System.out.printf("Total interest at 20%% = %.2f\n", interest);
 	}
 }
