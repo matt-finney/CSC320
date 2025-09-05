@@ -11,6 +11,7 @@ import java.util.Scanner;
  * Maximum
  * Minimum
  * Interest on total at 20%
+ * https://github.com/matt-finney/CSC320
  */
 
 public class Module4 
