@@ -114,6 +114,7 @@ public class Module5
                                 break;
                         }
                     }
+                    break;
                 // exit program from main menu
                 case 3:
                     System.out.println("Exiting...");
@@ -134,7 +135,7 @@ public class Module5
         System.out.println("2: Get Month's Temperature");
         System.out.println("3: Exit program");
         System.out.println();
-        return getValidInt(input, "Enter choice: ");
+        return getValidInt(input, "Enter choice (1-3): ");
     }
 
     public static int setTemperatureMenu(Scanner input)
@@ -145,18 +146,18 @@ public class Module5
         System.out.println("2: Go back to main menu: ");
         System.out.println("3: Exit program");
         System.out.println();
-        return getValidInt(input, "Enter choice: ");
+        return getValidInt(input, "Enter choice (1-3): ");
     }
 
     public static int getTemperatureMenu(Scanner input)
     {
         //clearScreen();
         System.out.println("-------Get Temperature------");
-        System.out.println("1: Enter a Month name or number to get: ");
+        System.out.println("1: Enter a Month name or number to display: ");
         System.out.println("2: Go back to main menu: ");
         System.out.println("3: Exit program");
         System.out.println();
-        return getValidInt(input, "Enter choice: ");
+        return getValidInt(input, "Enter choice (1-3): ");
     }
 
     // Method to keep asking until the user enters a valid integer
@@ -220,6 +221,10 @@ public class Module5
                 {
                     return input;
                 }
+                else if (input.equalsIgnoreCase("b"));
+                {
+                    return input;
+                }
             } 
             catch (NumberFormatException e) 
             {
@@ -279,6 +284,54 @@ public class Module5
             System.out.println("Invalid input. Enter 1 - 12 or a month name.");
         }
     }
+
+    public static double getAverage(double[] values)
+    {
+        double sum = 0;
+        double average = 0;
+        int count = 0;
+        
+        for (int i = 0; i < values.length; i++)
+        {
+            if (!Double.isNaN(values[i]))
+            {
+                sum += values[i];
+                count++;
+            }
+        }
+
+        average = sum / count;
+
+        return average;
+    }
+
+    public static double getMin(double[] values)
+	{
+		double min = Double.POSITIVE_INFINITY;
+
+		for (int i = 0; i < values.length; i++)
+		{
+			if (values[i] < min)
+			{
+				min = values[i];
+			}
+		}
+		return min;
+	}
+
+    public static double getMax(double[] values)
+	{
+		double max = Double.NEGATIVE_INFINITY;
+
+		for (int i = 0; i < values.length; i++)
+		{
+			if (values[i] > max)
+			{
+				max = values[i];
+			}
+		}
+		return max;
+	}
 
     public static void addTemperatures(Scanner input)
     {
@@ -350,17 +403,35 @@ public class Module5
                 {
                     temperatures[month_choice - 1] = getValidDouble(input, "Enter the temperature for " + MONTHS[month_choice - 1] + ": ");
                     System.out.printf("The temperature for %s has been set to %.1f°F%n", MONTHS[month_choice - 1], temperatures[month_choice - 1]);
+                    response = getReponse(input, "Press \'b\' to return: ");
+                    if (response.equalsIgnoreCase("b"))
+                    {
+                        clearScreen();
+                    }
+                    else
+                    {
+                        System.out.println("Invalid option.");
+                    }
                 }   
                 else if (response.equalsIgnoreCase("n"))
                 {
                     System.out.println("Returning to the Get Temperature menu...\n");
-                    
                 }
                 System.out.println();
             }
             else
             {
                 System.out.printf("Temperature for %s: %.1f°F%n%n",MONTHS[month_choice - 1],temperatures[month_choice - 1]);
+                // press b to return
+                response = getReponse(input, "Press \'b\' to return: ");
+                if (response.equalsIgnoreCase("b"))
+                {
+                    clearScreen();
+                }
+                else
+                {
+                    System.out.println("Invalid option.");
+                }
             }
         }
         else if (month_choice == -1)
@@ -378,6 +449,20 @@ public class Module5
                     System.out.printf("%s:     \t%.1f°F%n", MONTHS[i],  temperatures[i]);
                 }
             }
+
+            // display avg, min, max temps
+            double min = Double.POSITIVE_INFINITY;
+            double max = Double.NEGATIVE_INFINITY;
+            double average = getAverage(temperatures);
+            min = getMin(temperatures);
+            max = getMax(temperatures);
+
+            System.out.println("min = " + min);
+            System.out.println("max = " + max);
+            System.out.println("avg = " + average);
+            System.out.println();
+
+
             response = getReponse(input, "Return to previous menu? (y/n): ");
             if (response.equalsIgnoreCase("y"))
             {
