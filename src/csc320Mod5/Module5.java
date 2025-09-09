@@ -403,7 +403,7 @@ public class Module5
                 {
                     temperatures[month_choice - 1] = getValidDouble(input, "Enter the temperature for " + MONTHS[month_choice - 1] + ": ");
                     System.out.printf("The temperature for %s has been set to %.1f°F%n", MONTHS[month_choice - 1], temperatures[month_choice - 1]);
-                    response = getReponse(input, "Press \'b\' to return: ");
+                    response = getReponse(input, "\nPress \'b\' to return: ");
                     if (response.equalsIgnoreCase("b"))
                     {
                         clearScreen();
@@ -457,9 +457,9 @@ public class Module5
             min = getMin(temperatures);
             max = getMax(temperatures);
 
-            System.out.println("min = " + min);
-            System.out.println("max = " + max);
-            System.out.println("avg = " + average);
+            System.out.printf("%nLowest temperature: %.1f°F%n", min);
+            System.out.printf("%nHighest temperature: %.1f°F%n", max);
+            System.out.printf("%nAverage temperature: %.1f°F%n", average);
             System.out.println();
 
 
