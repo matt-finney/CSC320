@@ -99,7 +99,7 @@ public class Module5
                             // get month temp, then stay in get menu
                             case 1:
                                 displayTemperatures(input);
-                                System.out.println();
+                                //System.out.println();
                             break;
                             // back to main menu
                             case 2:
@@ -151,7 +151,6 @@ public class Module5
 
     public static int getTemperatureMenu(Scanner input)
     {
-        //clearScreen();
         System.out.println("-------Get Temperature------");
         System.out.println("1: Enter a Month name or number to display: ");
         System.out.println("2: Go back to main menu: ");
@@ -299,7 +298,6 @@ public class Module5
                 count++;
             }
         }
-
         average = sum / count;
 
         return average;
@@ -415,9 +413,8 @@ public class Module5
                 }   
                 else if (response.equalsIgnoreCase("n"))
                 {
-                    System.out.println("Returning to the Get Temperature menu...\n");
+                    clearScreen();
                 }
-                System.out.println();
             }
             else
             {
@@ -458,23 +455,18 @@ public class Module5
             max = getMax(temperatures);
 
             System.out.printf("%nLowest temperature: %.1f°F%n", min);
-            System.out.printf("%nHighest temperature: %.1f°F%n", max);
-            System.out.printf("%nAverage temperature: %.1f°F%n", average);
+            System.out.printf("Highest temperature: %.1f°F%n", max);
+            System.out.printf("Average temperature: %.1f°F%n", average);
             System.out.println();
 
-
-            response = getReponse(input, "Return to previous menu? (y/n): ");
-            if (response.equalsIgnoreCase("y"))
+            response = getReponse(input, "Press \'b\' to return: ");
+            if (response.equalsIgnoreCase("b"))
             {
                 clearScreen();
             }
-            else if (response.equalsIgnoreCase("n"))
-            {
-                // prob do nothing
-            }
             else
             {
-                System.out.println("Invalid input.");
+                System.out.println("Invalid option.");
             }
         }
         else if (month_choice == -2)
