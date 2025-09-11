@@ -15,28 +15,6 @@ import java.util.Scanner;
  * https://github.com/matt-finney/CSC320
  */
 
-/*
-    * display menu
-    * have 1 / 2 set or get
-    * have user select 1 or 2
-    * clear console
-    * 
-    * set menu
-    * set will ask user for month number or name or go back to display menu
-    * clear console
-    * ask user temperature
-    * clear console
-    * go back to set menu
-    * 
-    * 
-    * get menu
-    * get will ask user for a month, type name, or go back to display menu
-    * clear console
-    * display month and temperature
-    * clear console
-    * display year and average temperature if year is entered
-    * 
-    */
 public class Module5
 {
     // Two arrays to carry the months and temperatures associated
@@ -468,7 +446,6 @@ public class Module5
                 if (Double.isNaN(temperatures[i]))
                 {
                     System.out.printf("%s:     \t----%n", MONTHS[i]);
-
                 }
                 else
                 {
