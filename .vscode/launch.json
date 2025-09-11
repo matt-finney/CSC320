@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "testing.Test",
+            "projectName": "CSC320_c7facf14"
+        },
+        {
+            "type": "java",
             "name": "Module5",
             "request": "launch",
             "mainClass": "csc320Mod5.Module5",
