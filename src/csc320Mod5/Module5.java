@@ -39,6 +39,8 @@ import java.util.Scanner;
     */
 public class Module5
 {
+    // Two arrays to carry the months and temperatures associated
+    // Declared outside of main method to be accessed in other methods
     public static final String[] MONTHS = 
     {
         "January", "February", "March", "April", "May", "June",
@@ -49,26 +51,31 @@ public class Module5
 
     public static void main(String[] args) 
     {
-        //double[] temperatures = new double[12];
+        // Populate the temperatures array
         Arrays.fill(temperatures, Double.NaN);
         
         Scanner input = new Scanner(System.in);
+        
+        // Keep looping the main menu until user exits
         boolean running = true;
-
         while (running)
         {
+            // display main menu and get user choice
             int main_menu_choice = mainMenu(input);
             switch (main_menu_choice) 
             {    
                 // Go to set temperatures menu
                 case 1:
+                    clearScreen();
+                    // Keep looping the set temperature menu until user goes back to main menu
                     boolean in_setting_menu = true;
                     while (in_setting_menu)
                     {
+                        // Get user choice from set temperature menu and decide action
                         int setting_choice = setTemperatureMenu(input);
                         switch (setting_choice) 
                         {
-                            // set month temp, then stay in setting menu
+                            // set month temp and add temperatures
                             case 1:
                                 addTemperatures(input);
                                 System.out.println();
@@ -90,17 +97,18 @@ public class Module5
                 // go to get temperatures menu
                 case 2:
                     clearScreen();
+                    // Keep looping the get temperature menu until user goes back to main menu
                     boolean in_getting_menu = true;
                     while (in_getting_menu)
                     {
+                        // Get user choice from get temperature menu and decide action
                         int getting_choice = getTemperatureMenu(input);
                         switch (getting_choice)
                         {
-                            // get month temp, then stay in get menu
+                            // get month temp and display temperatures
                             case 1:
                                 displayTemperatures(input);
-                                //System.out.println();
-                            break;
+                                break;
                             // back to main menu
                             case 2:
                                 in_getting_menu = false;                               
@@ -119,7 +127,6 @@ public class Module5
                 case 3:
                     System.out.println("Exiting...");
                     System.exit(0);
-
                 default:
                 System.out.println("Invalid option.");
             }
@@ -163,15 +170,19 @@ public class Module5
     public static int getValidInt(Scanner scanner, String prompt) 
     {
         int number;
+        // keep asking until a valid number is entered
         while (true) 
         {
+            // prompt user
             System.out.print(prompt);
             String input = scanner.nextLine();
             try 
             {
+                // try to parse input as an int
                 number = Integer.parseInt(input);
                 if (number > 0)
                 {
+                    // if successful, return the number
                     return number;
                 }
             } 
@@ -241,15 +252,14 @@ public class Module5
             System.out.print(prompt);
             String input = scanner.nextLine().trim();
 
-            // this throws error cause i usually call MONTHS[num] and -1 is outofbounds
             if (input.equalsIgnoreCase("year"))
             {
-                // special year case for the get temperature's menu
+                // special 'year' case from the get temperature's menu
                 return -1;
             }
             else if (input.equalsIgnoreCase("b"))
             {
-                // special case for exiting menu while setting
+                // special case for exiting menu while setting temperatures
                 return -2;
             }
             // try to parse input as an int first
@@ -272,7 +282,7 @@ public class Module5
                 // not a number, continue to check if month name was entered
             }
 
-            // check if user enter month name
+            // check if user entered month name
             for (int i = 0; i < MONTHS.length; i++)
             {
                 if (input.equalsIgnoreCase(MONTHS[i]))
@@ -284,6 +294,7 @@ public class Module5
         }
     }
 
+    // Method to get average of an array
     public static double getAverage(double[] values)
     {
         double sum = 0;
@@ -292,6 +303,7 @@ public class Module5
         
         for (int i = 0; i < values.length; i++)
         {
+            // only include valid numbers in the average calculation
             if (!Double.isNaN(values[i]))
             {
                 sum += values[i];
@@ -303,6 +315,7 @@ public class Module5
         return average;
     }
 
+    // Method to get min number in an array
     public static double getMin(double[] values)
 	{
 		double min = Double.POSITIVE_INFINITY;
@@ -317,6 +330,7 @@ public class Module5
 		return min;
 	}
 
+    // Method to get max number in an array
     public static double getMax(double[] values)
 	{
 		double max = Double.NEGATIVE_INFINITY;
@@ -331,16 +345,21 @@ public class Module5
 		return max;
 	}
 
+    // Method to add temperatures to the array
     public static void addTemperatures(Scanner input)
     {
+        // get month choice from user
         int month_choice = getMonthChoice(input, "Enter month name or number: ");
         if (month_choice > 0 && month_choice <= 12)
         {
             String response = null;
+            // check if month already has a temperature set 
             if (Double.isNaN(temperatures[month_choice - 1]))
             {
+                // if not, get temperature, set it, and ask user if they want to enter more
                 temperatures[month_choice - 1] = getValidDouble(input, "Enter the temperature for " + MONTHS[month_choice - 1] + ": ");
                 response = getReponse(input, "Would you like to keep entering temperatures? (y/n): ");
+                // 
                 if (response.equalsIgnoreCase("y"))
                 {
                     boolean enter_temperature_mode = true;
@@ -350,12 +369,11 @@ public class Module5
                         // exit if users types 'b' (-2) and make sure user didnt type 'year' (-1)
                         if (month_choice == -2)
                         {
-                            //clearScreen();
                             enter_temperature_mode = false;
                         }
                         else if (month_choice == -1)
                         {
-                            // handle year
+                            System.out.println("Invalid input.");
                         }
                         else if (month_choice > 0 && month_choice <= 12) 
                         {
@@ -371,6 +389,7 @@ public class Module5
             }
             else
             {
+                // if month already has a temperature, ask user if they want to overwrite it
                 System.out.printf("There is currently a temperature for %s of %.1f°F%n", MONTHS[month_choice - 1], temperatures[month_choice-1]);
                 response = getReponse(input, "Would you like to overwrite? (y/n): ");
                 if (response.equalsIgnoreCase("y"))
@@ -386,20 +405,25 @@ public class Module5
         }
     }
 
+    // Method to display temperatures
     public static void displayTemperatures(Scanner input)
     {
-        // needs to be a loop here somewhere to stay inside the display
+        // get month choice from user
         String response = null;
         int month_choice = getMonthChoice(input, "Enter month (1-12 or \'year\'): ");
         if (month_choice > 0 && month_choice <= 12)
         {
+            // check if month has a temperature set
             if (Double.isNaN(temperatures[month_choice - 1]))
             {
-                System.out.printf("There is currenly no temperature for %s", MONTHS[month_choice - 1]);
+                // if not, ask user if they want to set one
+                System.out.printf("There is currently no temperature for %s", MONTHS[month_choice - 1]);
                 response = getReponse(input, ", would you like set one? (y/n): ");
+                // if yes, get temperature and set it
                 if (response.equalsIgnoreCase("y"))
                 {
                     temperatures[month_choice - 1] = getValidDouble(input, "Enter the temperature for " + MONTHS[month_choice - 1] + ": ");
+                    // confirm temperature set and press b to return
                     System.out.printf("The temperature for %s has been set to %.1f°F%n", MONTHS[month_choice - 1], temperatures[month_choice - 1]);
                     response = getReponse(input, "\nPress \'b\' to return: ");
                     if (response.equalsIgnoreCase("b"))
@@ -410,7 +434,8 @@ public class Module5
                     {
                         System.out.println("Invalid option.");
                     }
-                }   
+                }  
+                // if no, return to get temperature menu 
                 else if (response.equalsIgnoreCase("n"))
                 {
                     clearScreen();
@@ -418,6 +443,7 @@ public class Module5
             }
             else
             {
+                // if month has a temperature, display it
                 System.out.printf("Temperature for %s: %.1f°F%n%n",MONTHS[month_choice - 1],temperatures[month_choice - 1]);
                 // press b to return
                 response = getReponse(input, "Press \'b\' to return: ");
@@ -431,14 +457,17 @@ public class Module5
                 }
             }
         }
+        // special case for displaying the whole year's temperatures
         else if (month_choice == -1)
         {
+            // display all months and their temperatures
             System.out.println("\nShowing temperatures for the year: ");
             for (int i = 0; i < MONTHS.length; i++)
             {
+                // don't display NaN values
                 if (Double.isNaN(temperatures[i]))
                 {
-                    System.out.printf("%s:     \t----%n", MONTHS[i],  temperatures[i]);
+                    System.out.printf("%s:     \t----%n", MONTHS[i]);
 
                 }
                 else
@@ -459,6 +488,7 @@ public class Module5
             System.out.printf("Average temperature: %.1f°F%n", average);
             System.out.println();
 
+            // Hang on the screen until user presses 'b' to go back
             response = getReponse(input, "Press \'b\' to return: ");
             if (response.equalsIgnoreCase("b"))
             {
@@ -474,6 +504,7 @@ public class Module5
             System.out.println("Invalid input");
         }
     }
+
     // Method to clear the terminal screen for clarity
     public static void clearScreen() 
     {
