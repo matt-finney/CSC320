@@ -1,5 +1,11 @@
 package csc320Mod6;
-
+/*
+ * Matthew Finney
+ * Submit document with methods for your automobile class,
+ * and pseudo code indicating functionality of each method.
+ * 
+ * https://github.com/matt-finney/csc320
+ */
 public class Module6 {
     public static void main(String[] args) {
         // Create an Automobile object
