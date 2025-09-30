@@ -6,7 +6,7 @@ public class Module8
     {
         try 
         {
-          Automobile car1 = new Automobile("Honda", "Civic", "Red", 2018);
+          Automobile car1 = new Automobile();
           System.out.println(car1.displayVehicleInfo());
         } catch (Exception e) 
         {
