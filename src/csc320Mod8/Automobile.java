@@ -135,7 +135,7 @@ public class Automobile
             {
                 sb.append(line).append("\n");
             }
-            return sb.toString();
+            return sb.toString().trim();
         } catch (Exception e) 
         {
             return "Failed to display vehicle information: " + e.getMessage();
