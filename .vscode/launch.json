@@ -9,6 +9,13 @@
             "name": "Module8",
             "request": "launch",
             "mainClass": "csc320Mod8.Module8",
+            "projectName": "CSC320_c7facf14"
+        },
+        {
+            "type": "java",
+            "name": "Module8",
+            "request": "launch",
+            "mainClass": "csc320Mod8.Module8",
             "projectName": "CSC320_5890eec0"
         },
         {
