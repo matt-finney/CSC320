@@ -54,22 +54,13 @@ public class Automobile
         // try catch block to handle if vehicle already exists
         try
         {
-            if (matches(make, model, color, year))
-            {
-                // update existing vehicle attributes
-                this.mileage = mileage;
-                return "Vehicle updated successfully.";
-            }
-            else
-            {
-                // create new vehicle
-                this.make = make;
-                this.model = model;
-                this.color = color;
-                this.year = year;
-                this.mileage = mileage;
-                return "New vehicle added successfully.";
-            }
+            // create new vehicle
+            this.make = make;
+            this.model = model;
+            this.color = color;
+            this.year = year;
+            this.mileage = mileage;
+            return "New vehicle added successfully.";
         } catch (Exception e)
         {
             return "Failed to add vehicle: " + e.getMessage();
@@ -99,8 +90,8 @@ public class Automobile
             if (make!= null) this.make = make;
             if (model!= null) this.model = model;
             if (color!= null) this.color = color;
-            if (year != 0) this.year = year;
-            if (new_mileage != 0) this.mileage = new_mileage;
+            if (year != -1) this.year = year; // -1 means ignore
+            if (new_mileage != -1) this.mileage = new_mileage; // -1 means ignore
             return "Vehicle updated successfully.";
         } catch (Exception e) 
         {
