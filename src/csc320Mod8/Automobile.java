@@ -1,4 +1,5 @@
 package csc320Mod8;
+import java.time.LocalDate;
 
 public class Automobile 
 {
@@ -9,16 +10,22 @@ public class Automobile
     private int year;
     private int mileage;
 
+    // private helper method
+    private void resetVehicle()
+    {
+        this.make = null;
+        this.model = null;
+        this.color = null;
+        this.year = LocalDate.now().getYear(); // default to current year
+        this.mileage = 0; // default mileage to 0
+    }
+
     // default constructor
     public Automobile()
     {
         try 
         {
-            this.make = null;
-            this.model = null;
-            this.color = null;
-            this.year = 0;
-            this.mileage = 0; // default mileage to 0
+            resetVehicle(); // initialize to default values
         } catch (Exception e) 
         {
             System.out.println("Error in default constructor: " + e.getMessage());
@@ -70,26 +77,14 @@ public class Automobile
     }
 
     // method to remove vehicle by resetting attributes
-    public String removeVehicle(String make, String model, String color, int year)
+    public String removeVehicle()
     {
         // try catch block to handle if vehicle not found
         try 
         {
-            // check if the vehicle matches the given attributes
-            if (matches(make, model, color, year))
-            {
-                // reset all attributes to default values
-                this.make = null;
-                this.model = null;
-                this.color = null;
-                this.year = 0;
-                this.mileage = 0;
-                return "Vehicle removed successfully.";
-            }
-            else
-            {
-                return "Vehicle not found.";
-            }
+            // reset all attributes to default values
+            resetVehicle();
+            return "Vehicle removed successfully.";
         } catch (Exception e) 
         {
             return "Failed to remove vehicle: " + e.getMessage();
@@ -112,6 +107,30 @@ public class Automobile
             return "Failed to update vehicle: " + e.getMessage();
         }
     }
+    
+    // method that returns a String[] of vehicle attributes
+    public String[] listVehicleInformation()
+    {
+        try
+        {
+            // check if vehicle information is available
+            if (make == null && model == null && color == null && year == 0)
+            {
+                return new String[] {"No vehicle information available."};
+            }
+            return new String[]
+            { 
+                "Make: " + make,
+                "Model: " + model,
+                "Color: " + color,
+                "Year: " + year,
+                "Mileage: " + mileage
+            };
+        } catch (Exception e)
+        {
+            return new String[] {"Failed to list vehicle information: " + e.getMessage()};
+        }
+    }
 
     // method to display vehicle information
     public String displayVehicleInfo()
@@ -119,16 +138,17 @@ public class Automobile
         // try block to handle if vehicle info is not available
         try 
         {
-            // check if vehicle information is available
-            if (make == null && model == null && color == null && year == 0)
+            String[] info = listVehicleInformation();
+            StringBuilder sb = new StringBuilder();
+            for (String line : info) 
             {
-                return "No vehicle information available.";
+                sb.append(line).append("\n");
             }
+            return sb.toString();
         } catch (Exception e) 
         {
             return "Failed to display vehicle information: " + e.getMessage();
         }
-        return "Make: " + make + ", Model: " + model + ", Color: " + color + ", Year: " + year + ", Mileage: " + mileage;
     }
 
     // helper method to check if vehicle matches given attributes
