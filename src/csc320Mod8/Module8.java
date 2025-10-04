@@ -4,7 +4,19 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.Scanner;
-
+/*
+ * Matthew Finney
+ * Program that tests the Automobile class
+ * Functionality:
+ * Step 1: Call the Default Constructor
+ * Step 2: Call the Parameterized Constructor
+ * Step 3: Remove the Vehicle
+ * Step 4: Add a new Vehicle
+ * Step 5: Update the Vehicle
+ * Step 6: Ask to save to file (Y/N)
+ *
+ * https://github.com/matt-finney/csc320
+ */
 public class Module8 
 {
     public static void main(String[] args) 
