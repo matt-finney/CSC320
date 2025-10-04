@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 /* 
  * Matthew Finney
+ * 
+ * EDIT: Updated description, added github repo link, corrected tax rate percentages, and added loops for weeks 1-4
+ * 
  * Program that will calculate the weekly average tax withholding for a customer given the following weekly income guidelines:
  * Income less than $500: tax rate 10%
  * Incomes greater than/equal to $500 and less than $1500: tax rate 15%
