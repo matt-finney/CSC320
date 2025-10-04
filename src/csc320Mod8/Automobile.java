@@ -1,6 +1,11 @@
 package csc320Mod8;
 import java.time.LocalDate;
-
+/*
+ * Matthew Finney
+ * Automobile class with methods to add, remove, update, list, and display vehicle information.
+ * 
+ * https://github.com/matt-finney/csc320
+ */
 public class Automobile 
 {
     // instance variables
