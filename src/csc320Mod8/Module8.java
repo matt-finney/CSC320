@@ -2,6 +2,7 @@ package csc320Mod8;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Module8 
@@ -57,26 +58,39 @@ public class Module8
       // decide to write to file
       if (response.equalsIgnoreCase("y"))
       {
-        writeToFile(file_path, car2);
+        System.out.print(writeToFile(file_path, car2));
       }
       else
       {
         System.out.println("No file will be created.");
       }
+
+      // close scanner resource
+      input.close();
     }
     
     // Helper method to write to file
-    public static void writeToFile(String file_path, Automobile car)
+    public static String writeToFile(String file_path, Automobile car)
     {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(file_path, true)))
+      try
+      {
+        Path parent = java.nio.file.Paths.get(file_path).getParent();
+        // make sure parent directory exists before writing
+        java.nio.file.Files.createDirectories(parent);
+      
+        // overwrite mode
+        try (PrintWriter writer = new PrintWriter(new FileWriter(file_path, false)))
         {
-          writer.println(car.displayVehicleInfo());
-          writer.println();
-          System.out.printf("Vehicle information written to %s", file_path);
-        } catch (Exception e)
-        {
-          System.out.println("Failed to write file: " + e.getMessage());
+          // write the car's information to the file
+          writer.print(car.displayVehicleInfo());
+
+          return "Vehicle information written to " + file_path + " successfully.\n";
         }
+      }
+      catch (Exception e)
+      {
+        return "Failed to write file: " + e.getMessage();
+      }
     }
 
     // Helper mhod to keep asking until the user enters 'y', 'n'
