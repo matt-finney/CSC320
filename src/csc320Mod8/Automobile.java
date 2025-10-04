@@ -129,6 +129,7 @@ public class Automobile
         // try block to handle if vehicle info is not available
         try 
         {
+            // get vehicle info as array and convert to single string
             String[] info = listVehicleInformation();
             StringBuilder sb = new StringBuilder();
             for (String line : info) 
