@@ -142,39 +142,6 @@ public class Automobile
         }
     }
 
-    // helper method to check if vehicle matches given attributes
-    private boolean matches(String make, String model, String color, int year)
-    {
-        try 
-        {
-            if (make == null || model == null || color == null) 
-            {
-                throw new IllegalArgumentException("Make, model, and color cannot be null.");
-            }
-        } catch (IllegalArgumentException e) 
-        {
-            return false; // if any attribute is null, it is considered not a match
-        }
-        return safeEquals(this.make, make) &&
-               safeEquals(this.model, model) &&
-               safeEquals(this.color, color) &&
-               this.year == year;
-    }
-
-    // helper method to safely compare strings, handling nulls
-    private boolean safeEquals(String a, String b)
-    {
-        try 
-        {
-            if (a == null && b == null) return true; // both null
-            if (a == null || b == null) return false; // one is null
-            return a.equals(b); // both non-null
-        } catch (Exception e) 
-        {
-            return false; // in case of any exception, consider not equal
-        }
-    }
-
     // getters
     public String getMake()
     {
